@@ -5,7 +5,7 @@ import './css/style.css';
 const App = (props) => {
     const blank = {title:'', url:''};
     const [bookmarks, setBookmarks] = React.useState(null);
-    const baseURL = 'https://general-bookmarks.herokuapp.com';
+    const baseURL = 'https://assembled-bookmarks.herokuapp.com';
 
     const getInfo = async() =>{
         const response = await fetch(`${baseURL}/bookmarks/index`);
