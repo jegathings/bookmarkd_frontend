@@ -10,7 +10,7 @@ const App = (props) => {
     // const addBookmarkPlaceholder = 'Add Bookmark';
     // const EditBookmarkPlaceholder = 'Edit';
     const [bookmarks, setBookmarks] = React.useState(null);
-    const [showEdit, setShowText] = React.useState(false);
+    const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
     //This is test code, I used to figure out how react works
     const [state,setState] = React.useState({hello:'hello world', cheese:'gouda'});
     //This is test code, I used to figure out how react works
@@ -64,7 +64,7 @@ const App = (props) => {
         );
         //grab the updated list of holidays
         getInfo();
-        setShowText(!showEdit);
+        setShowEditOrCreate(!showEditOrCreate);
     };
 
     const handleDelete = async (data) =>{
@@ -84,11 +84,11 @@ const App = (props) => {
         <>
         <div className="main">
             <h1>Bookmarkd</h1>
-            {!showEdit && <div>
+            {!showEditOrCreate && <div>
                 <h3>Add A Bookmark</h3>
                 <Form initial={blank} handleSubmit = {handleCreate}/>
             </div>}
-            {showEdit && <EditForm initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/>}
+            {showEditOrCreate && <EditForm initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/>}
             {/* <h1>{state.cheese}</h1>
             {showText && <h1>{stat1.id} - {stat1.title} - {stat1.url}</h1>} */}
             <ul>
@@ -106,7 +106,7 @@ const App = (props) => {
                                     className="main-list-btn"
                                     onClick={() =>{
                                         handleSelect(bookmark);
-                                        setShowText(!showEdit);
+                                        setShowEditOrCreate(!showEditOrCreate);
                                         // setStat1({...stat1,id:bookmark._id,title:bookmark.title,url:bookmark.url});
                                         // setState({...state,cheese:"American"})
                                         // console.log("EditBookmark", editBookmark);
