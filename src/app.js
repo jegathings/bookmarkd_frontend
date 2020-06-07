@@ -14,10 +14,7 @@ const App = (props) => {
         title: '',
         url: '',
     });
-    // const [blankForm, setBlankForm] = React.useState({
-    //     title: '',
-    //     url: '',
-    // })
+
     
     const blank = {title:'', url:''};
     
@@ -41,7 +38,6 @@ const App = (props) => {
             body: JSON.stringify(data),
         });
         getInfo();
-        setBlankForm;
     }
 
     const handleSelect = async (bookmark) =>{
