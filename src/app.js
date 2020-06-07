@@ -10,16 +10,20 @@ const App = (props) => {
     // const addBookmarkPlaceholder = 'Add Bookmark';
     // const EditBookmarkPlaceholder = 'Edit';
     const [bookmarks, setBookmarks] = React.useState(null);
+    const [showText, setShowText] = React.useState(false);
+    const [state,setState] = React.useState({hello:'hello world', cheese:'gouda'});
+    const [stat1,setStat1] = React.useState({id:'999999999',title:"blood orange", url:"url"});
+
+    let edit = React.useRef(null);
     /////// sets state for editing
     const [editBookmark, setEditBookmark] = React.useState({
+        id:'',
         title: '',
         url: '',
     });
-    const baseURL = 'https://assembled-bookmarks.herokuapp.com';
-    
+    const baseURL = 'https://assembled-bookmarks.herokuapp.com';    
     const blank = {title:'', url:''};
     
-
     const getInfo = async() =>{
         const response = await fetch(`${baseURL}/bookmarks/index`);
         const result = await response.json();
@@ -42,13 +46,16 @@ const App = (props) => {
     }
 
     const handleSelect = async (bookmark) =>{
-        setEditBookmark(bookmark);
+        setEditBookmark({...editBookmark, id: bookmark._id, title:bookmark.title, url:bookmark.url});
+        console.log("Edit bookmark", editBookmark);
+        console.log("Bookmark", bookmark);
     };
 
     const handleEdit = async (data) => {
         //updates the selected holiday
+        console.log("Data is", data);
         const response = await fetch(
-            `${baseURL}/bookmarks/update/${data._id}`,
+            `${baseURL}/bookmarks/update/${data.id}`,
             {
                 method: 'PUT',
                 headers: {
@@ -59,7 +66,7 @@ const App = (props) => {
         );
         //grab the updated list of holidays
         getInfo();
-
+        setShowText(!showText);
     };
 
     const handleDelete = async (data) =>{
@@ -85,7 +92,9 @@ const App = (props) => {
                 <h3>Add A Bookmark</h3>
                 <Form initial={blank} handleSubmit = {handleCreate}/>
             </div>
-
+            {showText && <EditForm initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/>}
+            {/* <h1>{state.cheese}</h1>
+            {showText && <h1>{stat1.id} - {stat1.title} - {stat1.url}</h1>} */}
             <ul>
                 {
                     bookmarks ? 
@@ -101,7 +110,11 @@ const App = (props) => {
                                     className="main-list-btn"
                                     onClick={() =>{
                                         handleSelect(bookmark);
-                                        
+                                        setShowText(!showText);
+                                        // setStat1({...stat1,id:bookmark._id,title:bookmark.title,url:bookmark.url});
+                                        // setState({...state,cheese:"American"})
+                                        // console.log("EditBookmark", editBookmark);
+                                        // console.log("----------");
                                     }}
                                 >&#9998;</button>
                                 <button
@@ -113,9 +126,6 @@ const App = (props) => {
                                 >&#10007;</button>
                                 </div>
                                 </div>
-                            <div className="form-edit">
-                                <EditForm initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/>
-                            </div>
                             </li>
                         )
                     })

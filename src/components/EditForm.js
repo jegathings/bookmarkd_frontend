@@ -17,7 +17,6 @@ const handleChange = (event) =>{
     return (
         <>
         
-        <div className="edit-form">
         <h3>Edit A Bookmark</h3>
             <input
             type="text"
@@ -35,12 +34,12 @@ const handleChange = (event) =>{
             /><br/>
             <button
                 onClick={() =>{
+                    console.log("Clicked Submit");
                     props.handleSubmit(formData);
                     // setFormData(props.initial);
-                    resetFormData(resetForm);
+                    // resetFormData(resetForm);
                 }}
                 >&#10004;</button>
-        </div>
         </>
     );
 };
