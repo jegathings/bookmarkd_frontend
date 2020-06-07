@@ -1,0 +1,51 @@
+h1 {
+    color: orange;
+}
+.main{
+    text-align: center;
+}
+.main-list-btn{
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    margin: 0 .2rem;
+    cursor: pointer;
+}
+.main-list-item{
+    & h1{
+        display: inline;
+    }
+    & div{
+        display: inline;
+    }
+}
+.main-list-item{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+    padding: .5rem;
+}
+.main-list-item:nth-child(odd){
+    background-color: rgb(191, 191, 191);
+}
+.main-list-item-div-one{
+    display: flex;
+    justify-content: left;
+}
+.main-list-item-div-two{
+    display: flex;
+    justify-content: right;
+}
+
+.main{
+    & input{
+        margin: .2rem;
+        font-size: 1.2rem;
+    }
+    & button{
+        font-size: 1.5rem;
+        background-color: transparent;
+        border: none;
+    }
+}
