@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/style.scss';
-import Form from './components/NewForm'
+import Form from './components/NewForm';
+import EditForm from './components/EditForm';
 
 
 
@@ -74,6 +75,8 @@ const App = (props) => {
         getInfo();
     }
 
+
+
     return (
         <>
         <div className="main">
@@ -82,16 +85,14 @@ const App = (props) => {
                 <h3>Add A Bookmark</h3>
                 <Form initial={blank} handleSubmit = {handleCreate}/>
             </div>
-            <div>
-            <h3>Edit A Bookmark</h3>
-            <Form initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/>
-            </div>
+
             <ul>
                 {
                     bookmarks ? 
                     bookmarks.map((bookmark, index) => {
                         return(
-                            <li key={bookmark._id} className="main-list-item">
+                            <li key={bookmark._id}>
+                                <div className="main-list-item">
                                 <div className="main-list-item-div main-list-item-div-one">
                                 <h1><a href={bookmark.url} target="_blank">{bookmark.title}</a></h1>
                                 </div>
@@ -100,15 +101,21 @@ const App = (props) => {
                                     className="main-list-btn"
                                     onClick={() =>{
                                         handleSelect(bookmark);
+                                        
                                     }}
                                 >&#9998;</button>
                                 <button
                                     className="main-list-btn"
                                     onClick={() =>{
                                         handleDelete(bookmark);
+                                        
                                     }}
                                 >&#10007;</button>
                                 </div>
+                                </div>
+                            <div className="form-edit">
+                                <EditForm initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/>
+                            </div>
                             </li>
                         )
                     })
