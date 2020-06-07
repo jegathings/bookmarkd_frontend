@@ -30,7 +30,7 @@ const App = (props) => {
     },[]);
 
     const handleCreate = async (data) => {
-        const response = await fetch('${baseURL}/bookmarks/create', {
+        const response = await fetch(`${baseURL}/bookmarks/create`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
