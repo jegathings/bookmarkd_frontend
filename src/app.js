@@ -104,12 +104,12 @@ const App = (props) => {
             }
             {/* <h1>{state.cheese}</h1>
             {showText && <h1>{stat1.id} - {stat1.title} - {stat1.url}</h1>} */}
-            <ul>
+            <div>
                 {
                     bookmarks ? 
                     bookmarks.map((bookmark, index) => {
                         return(
-                            <li key={bookmark._id}>
+                            <div key={bookmark._id}>
                                 <div className="main-list-item">
                                 <div className="main-list-item-div main-list-item-div-one">
                                 <h1><a href={bookmark.url} target="_blank">{bookmark.title}</a></h1>
@@ -138,13 +138,13 @@ const App = (props) => {
                                 >&#10007;</button>
                                 </div>
                                 </div>
-                            </li>
+                            </div>
                         )
                     })
                     :
                     "...Loading"
                 }
-            </ul>
+            </div>
             </div>
         </>
     );
