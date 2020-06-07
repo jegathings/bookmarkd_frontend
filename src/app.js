@@ -10,11 +10,11 @@ const App = (props) => {
     // const addBookmarkPlaceholder = 'Add Bookmark';
     // const EditBookmarkPlaceholder = 'Edit';
     const [bookmarks, setBookmarks] = React.useState(null);
-    const [showText, setShowText] = React.useState(false);
+    const [showEdit, setShowText] = React.useState(false);
+    //This is test code, I used to figure out how react works
     const [state,setState] = React.useState({hello:'hello world', cheese:'gouda'});
+    //This is test code, I used to figure out how react works
     const [stat1,setStat1] = React.useState({id:'999999999',title:"blood orange", url:"url"});
-
-    let edit = React.useRef(null);
     /////// sets state for editing
     const [editBookmark, setEditBookmark] = React.useState({
         id:'',
@@ -47,13 +47,11 @@ const App = (props) => {
 
     const handleSelect = async (bookmark) =>{
         setEditBookmark({...editBookmark, id: bookmark._id, title:bookmark.title, url:bookmark.url});
-        console.log("Edit bookmark", editBookmark);
-        console.log("Bookmark", bookmark);
+        // console.log("Edit bookmark", editBookmark);
+        // console.log("Bookmark", bookmark);
     };
 
     const handleEdit = async (data) => {
-        //updates the selected holiday
-        console.log("Data is", data);
         const response = await fetch(
             `${baseURL}/bookmarks/update/${data.id}`,
             {
@@ -66,7 +64,7 @@ const App = (props) => {
         );
         //grab the updated list of holidays
         getInfo();
-        setShowText(!showText);
+        setShowText(!showEdit);
     };
 
     const handleDelete = async (data) =>{
@@ -82,17 +80,15 @@ const App = (props) => {
         getInfo();
     }
 
-
-
     return (
         <>
         <div className="main">
             <h1>Bookmarkd</h1>
-            <div>
+            {!showEdit && <div>
                 <h3>Add A Bookmark</h3>
                 <Form initial={blank} handleSubmit = {handleCreate}/>
-            </div>
-            {showText && <EditForm initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/>}
+            </div>}
+            {showEdit && <EditForm initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/>}
             {/* <h1>{state.cheese}</h1>
             {showText && <h1>{stat1.id} - {stat1.title} - {stat1.url}</h1>} */}
             <ul>
@@ -110,7 +106,7 @@ const App = (props) => {
                                     className="main-list-btn"
                                     onClick={() =>{
                                         handleSelect(bookmark);
-                                        setShowText(!showText);
+                                        setShowText(!showEdit);
                                         // setStat1({...stat1,id:bookmark._id,title:bookmark.title,url:bookmark.url});
                                         // setState({...state,cheese:"American"})
                                         // console.log("EditBookmark", editBookmark);
