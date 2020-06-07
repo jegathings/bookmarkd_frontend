@@ -64,6 +64,8 @@ const App = (props) => {
         );
         //grab the updated list of holidays
         getInfo();
+        //We do not want to display the edit route after we have competed an edit.
+        //This will toggle back to displaying the create functionality.
         setShowEditOrCreate(!showEditOrCreate);
     };
 
@@ -84,11 +86,22 @@ const App = (props) => {
         <>
         <div className="main">
             <h1>Bookmarkd</h1>
+            {/**
+             * This toggles to either show the create functionality or show the edit functionality
+             */}
             {!showEditOrCreate && <div>
                 <h3>Add A Bookmark</h3>
                 <Form initial={blank} handleSubmit = {handleCreate}/>
             </div>}
+            {/**
+             * This toggles to either show the create functionality or show the edit functionality
+             */}
             {showEditOrCreate && <EditForm initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/>}
+            {
+                /**
+                 * The next couple of lines are test/probing code.
+                 */
+            }
             {/* <h1>{state.cheese}</h1>
             {showText && <h1>{stat1.id} - {stat1.title} - {stat1.url}</h1>} */}
             <ul>
@@ -106,6 +119,9 @@ const App = (props) => {
                                     className="main-list-btn"
                                     onClick={() =>{
                                         handleSelect(bookmark);
+                                        /**
+                                         * Toggle between displaying edit or create functionality.
+                                         */
                                         setShowEditOrCreate(!showEditOrCreate);
                                         // setStat1({...stat1,id:bookmark._id,title:bookmark.title,url:bookmark.url});
                                         // setState({...state,cheese:"American"})
