@@ -85,18 +85,19 @@ const App = (props) => {
     return (
         <>
         <div className="main">
-            <h1>Bookmarkd</h1>
+            <h1>Bookmark'd</h1>
+            <h2>Created By James Gathings and Phil Mayo using the MERN stack</h2>
             {/**
              * This toggles to either show the create functionality or show the edit functionality
              */}
-            {!showEditOrCreate && <div>
+            {!showEditOrCreate && <div className="addForm">
                 <h3>Add A Bookmark</h3>
                 <Form initial={blank} handleSubmit = {handleCreate}/>
             </div>}
             {/**
              * This toggles to either show the create functionality or show the edit functionality
              */}
-            {showEditOrCreate && <EditForm initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/>}
+            {showEditOrCreate && <div className="editForm"><EditForm initial={editBookmark} handleSubmit={handleEdit} resetForm={blank}/></div>}
             {
                 /**
                  * The next couple of lines are test/probing code.
@@ -112,7 +113,7 @@ const App = (props) => {
                             <div key={bookmark._id}>
                                 <div className="main-list-item">
                                 <div className="main-list-item-div main-list-item-div-one">
-                                <h1><a href={bookmark.url} target="_blank">{bookmark.title}</a></h1>
+                                <a href={bookmark.url} target="_blank"><button>{bookmark.title}</button></a>
                                 </div>
                                 <div className="main-list-item-div main-list-item-div-two">
                                 <button

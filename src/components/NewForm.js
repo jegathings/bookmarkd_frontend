@@ -17,19 +17,21 @@ const handleChange = (event) =>{
     return (
         <>
         <div className="form">
+            <span>Website Title:</span>
             <input
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
-            placeholder="Website Name"
+            placeholder="Ex. Google Homepage"
             /><br/>
+            <span>URL:</span>
             <input
             type="text"
             name="url"
             value={formData.url}
             onChange={handleChange}
-            placeholder="Website URL"
+            placeholder="http://website.com"
             /><br/>
             <button
                 onClick={() =>{
