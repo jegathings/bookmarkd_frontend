@@ -16,31 +16,30 @@ const handleChange = (event) =>{
 
     return (
         <>
-        <div className="form">
-            <span>Website Title:</span>
+        
+        <h3>Edit A Bookmark</h3>
             <input
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
-            placeholder="Ex. Google Homepage"
+            placeholder="Website Name"
             /><br/>
-            <span>URL:</span>
             <input
             type="text"
             name="url"
             value={formData.url}
             onChange={handleChange}
-            placeholder="http://website.com"
+            placeholder="Website URL"
             /><br/>
             <button
                 onClick={() =>{
+                    console.log("Clicked Submit");
                     props.handleSubmit(formData);
                     // setFormData(props.initial);
-                    resetFormData(resetForm);
+                    // resetFormData(resetForm);
                 }}
                 >&#10004;</button>
-        </div>
         </>
     );
 };
