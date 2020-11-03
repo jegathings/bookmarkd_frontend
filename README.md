@@ -1,4 +1,4 @@
-# Alex Merced's React/Parcel Template
+# React/Parcel Template
 
 ## Directions
 
