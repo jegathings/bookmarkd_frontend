@@ -1,5 +1,3 @@
-# React/Parcel Template
-
 ## Directions
 
 1. Clone this repo
